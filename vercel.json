@@ -20,7 +20,20 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/index.html",
+      "headers": {
+        "cache-control": "s-maxage=0"
+      }
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/quiz/select",
+      "destination": "/"
+    },
+    {
+      "source": "/quiz/:exam/:subject/:topic",
+      "destination": "/"
     }
   ]
 }

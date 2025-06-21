@@ -25,9 +25,15 @@ export default defineConfig({
   },
   root: path.resolve(import.meta.dirname),
   build: {
-    outDir: path.resolve(import.meta.dirname, "dist"),
+    outDir: "dist",
     emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, "index.html")
+      }
+    }
   },
+  base: "/",
   server: {
     fs: {
       strict: true,
