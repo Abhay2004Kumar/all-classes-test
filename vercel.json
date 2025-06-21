@@ -11,6 +11,14 @@
   ],
   "routes": [
     {
+      "src": "/quiz/select",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/quiz/:exam/:subject/:topic",
+      "dest": "/index.html"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
