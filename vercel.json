@@ -11,7 +11,7 @@
   ],
   "routes": [
     {
-      "src": "/quiz/select",
+      "src": "/quiz/(.*)",
       "dest": "/index.html",
       "headers": {
         "cache-control": "s-maxage=0"

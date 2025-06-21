@@ -36,21 +36,12 @@ export default function Navigation() {
               >
                 Prizes
               </button>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button className="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2">
-                    Quiz
-                    <ChevronDown className="h-4 w-4" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem>
-                    <Link href="/quiz/select" className="w-full inline-flex items-center justify-start">
-                      Select Quiz
-                    </Link>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <Link 
+                href="/quiz/select"
+                className="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors"
+              >
+                Select Quiz
+              </Link>
               <button 
                 onClick={() => scrollToSection('faq')}
                 className="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors"
@@ -94,30 +85,12 @@ export default function Navigation() {
               >
                 Prizes
               </button>
-              <button 
-                onClick={() => window.location.href = '/quiz/11th'}
+              <Link 
+                href="/quiz/select"
                 className="text-gray-700 hover:text-primary block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors"
               >
-                11th Class Quiz
-              </button>
-              <button 
-                onClick={() => window.location.href = '/quiz/12th'}
-                className="text-gray-700 hover:text-primary block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors"
-              >
-                12th Class Quiz
-              </button>
-              <button 
-                onClick={() => window.location.href = '/quiz/dropper'}
-                className="text-gray-700 hover:text-primary block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors"
-              >
-                Dropper Quiz
-              </button>
-              <button 
-                onClick={() => window.location.href = '/quiz/cbse'}
-                className="text-gray-700 hover:text-primary block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors"
-              >
-                CBSE Quiz
-              </button>
+                Select Quiz
+              </Link>
               <button 
                 onClick={() => scrollToSection('faq')}
                 className="text-gray-700 hover:text-primary block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors"
