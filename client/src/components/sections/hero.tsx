@@ -22,12 +22,10 @@ export default function Hero() {
                 </Badge>
               </div>
               <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Register Now for the{" "}
-                <span className="text-primary">AllTheClasses</span>{" "}
-                Talent Test 2025
+                AllTheClasses Talent Test 2025
               </h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Take the first step toward your dream college – Offline test in Delhi with exciting rewards!
+                A unique opportunity to showcase your talent and secure a seat in our exclusive coaching program for JEE, NEET, and CBSE (11th & 12th) with personalized learning and small batches.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <div className="flex items-center text-gray-700">
@@ -36,11 +34,11 @@ export default function Hero() {
                 </div>
                 <div className="flex items-center text-gray-700">
                   <MapPin className="text-primary mr-2 w-5 h-5" />
-                  <span className="font-medium">Delhi Centers</span>
+                  <span className="font-medium">Multiple Centers Across Delhi</span>
                 </div>
                 <div className="flex items-center text-gray-700">
                   <Gift className="text-primary mr-2 w-5 h-5" />
-                  <span className="font-medium">Free Registration</span>
+                  <span className="font-medium">Free Registration & Exciting Prizes</span>
                 </div>
               </div>
               {/* Mobile CTA */}

@@ -11,7 +11,7 @@ export default function TestLocation() {
 
   const center = {
     name: "AllTheClasses Main Center",
-    address: "XYZ Building, Laxmi Nagar, Delhi - 110092",
+    address: "P-40A, Shashi Park Rd, near Ahlcon Public School, Supreme Enclave, Mayur Vihar, New Delhi, Delhi, 110091",
     metro: "Near Laxmi Nagar Metro Station",
     landmarks: "Near City Square Mall & Akshardham Temple"
   };

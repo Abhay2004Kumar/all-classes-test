@@ -2,10 +2,10 @@ import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from "luci
 
 export default function Footer() {
   const socialLinks = [
-    { icon: Facebook, href: "#", label: "Facebook" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Youtube, href: "#", label: "YouTube" }
+    { icon: Facebook, href: "https://facebook.com/alltheclasses", label: "Facebook" },
+    { icon: Twitter, href: "https://twitter.com/alltheclasses", label: "Twitter" },
+    { icon: Instagram, href: "https://instagram.com/alltheclasses", label: "Instagram" },
+    { icon: Youtube, href: "https://youtube.com/alltheclasses", label: "YouTube" }
   ];
 
   const quickLinks = [
@@ -29,7 +29,7 @@ export default function Footer() {
               <span className="text-2xl font-bold text-primary">AllTheClasses</span>
             </div>
             <p className="text-gray-300 mb-6 max-w-md">
-              Empowering students to achieve their dreams through quality education and personalized guidance. Join thousands of successful students who chose AllTheClasses.
+              Specializing in JEE, NEET, and CBSE (11th & 12th) coaching with personalized home tuition and small batches of only 8 students per batch. Join our talent test to secure your seat in our exclusive program.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
@@ -38,6 +38,8 @@ export default function Footer() {
                   href={social.href}
                   className="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-primary/80 transition-colors"
                   aria-label={social.label}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <social.icon className="w-5 h-5" />
                 </a>
@@ -66,15 +68,15 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center">
                 <Mail className="text-primary mr-3 w-5 h-5" />
-                <span className="text-gray-300">contact@alltheclasses.com</span>
+                <span className="text-gray-300">support@alltheclasses.com</span>
               </div>
               <div className="flex items-center">
                 <Phone className="text-primary mr-3 w-5 h-5" />
-                <span className="text-gray-300">+91-XXXXXXXXXX</span>
+                <span className="text-gray-300">+91 98765 43210</span>
               </div>
               <div className="flex items-start">
                 <MapPin className="text-primary mr-3 w-5 h-5 mt-1" />
-                <span className="text-gray-300">Head Office – XYZ Nagar, Delhi</span>
+                <span className="text-gray-300">P-40A, Shashi Park Rd, near Ahlcon Public School, Supreme Enclave, Mayur Vihar, New Delhi, Delhi, 110091</span>
               </div>
             </div>
           </div>
@@ -82,7 +84,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-gray-400">
-            © 2025 AllTheClasses. All rights reserved. | Designed for student success.
+            © 2025 AllTheClasses. All rights reserved. | JEE, NEET & CBSE Coaching | Small Batches & Home Tuition
           </p>
         </div>
       </div>

@@ -57,10 +57,13 @@ export default function FAQ() {
 
         <div className="text-center mt-12">
           <p className="text-gray-600 mb-4">Still have questions?</p>
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+          <a 
+            href="mailto:support@alltheclasses.com" 
+            className="inline-flex items-center bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 rounded-md transition-colors"
+          >
             <Mail className="mr-2 w-4 h-4" />
             Contact Us
-          </Button>
+          </a>
         </div>
       </div>
     </section>

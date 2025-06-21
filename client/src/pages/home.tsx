@@ -7,6 +7,7 @@ import PrizesRewards from "@/components/sections/prizes-rewards";
 import PersonalizedLearning from "@/components/sections/personalized-learning";
 import WhyAllTheClasses from "@/components/sections/why-alltheclasses";
 import FAQ from "@/components/sections/faq";
+import Faculty from "@/components/sections/faculty";
 import Footer from "@/components/sections/footer";
 import { Button } from "@/components/ui/button";
 import { PenTool } from "lucide-react";
@@ -27,6 +28,7 @@ export default function Home() {
       <PrizesRewards />
       <PersonalizedLearning />
       <WhyAllTheClasses />
+      <Faculty />
       <FAQ />
       <Footer />
       
