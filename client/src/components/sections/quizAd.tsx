@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
 const QuizAd = () => {
-  const [location] = useLocation();
+  const [location, navigate] = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -76,7 +76,7 @@ const QuizAd = () => {
               <Button 
                 variant="default" 
                 size="lg"
-                onClick={() => window.location.href = '/quiz/select'}
+                onClick={() => navigate('/quiz/select')}
                 className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-6 text-base flex-1 max-w-xs transition-all duration-200 hover:shadow-md"
               >
                 Try Demo Quiz
