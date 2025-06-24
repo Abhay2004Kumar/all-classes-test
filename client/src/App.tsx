@@ -7,6 +7,7 @@ import Home from "@/pages/home";
 import NotFound from "@/pages/not-found";
 import QuizPage from "@/pages/quiz/[class]";
 import QuizSelectPage from "@/pages/quiz/select";
+import QuizAd from "@/components/sections/quizAd";
 
 function Router() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <TooltipProvider>
         <Toaster />
         <Router />
+        <QuizAd />
       </TooltipProvider>
     </QueryClientProvider>
   );
