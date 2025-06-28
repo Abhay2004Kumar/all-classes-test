@@ -44,7 +44,9 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
             <div className="flex items-center mb-4">
-              <span className="text-2xl font-bold text-primary">AllTheClasses</span>
+              <span className="text-3xl font-serif font-extrabold text-primary tracking-wide" style={{ fontFamily: 'Times New Roman, serif' }}>
+              ALL THE CLASSES
+            </span>
             </div>
             <p className="text-gray-300 mb-6 max-w-md">
               Specializing in JEE, NEET, and CBSE (11th & 12th) coaching with personalized home tuition and small batches of only 8 students per batch. Join our talent test to secure your seat in our exclusive program.
