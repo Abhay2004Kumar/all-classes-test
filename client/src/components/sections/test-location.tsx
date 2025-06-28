@@ -5,28 +5,36 @@ import { MapPin, TrainFront, ArrowRight } from "lucide-react";
 
 export default function TestLocation() {
   const scrollToRegister = () => {
-    const element = document.getElementById('register');
-    element?.scrollIntoView({ behavior: 'smooth' });
+    const element = document.getElementById("register");
+    element?.scrollIntoView({ behavior: "smooth" });
   };
 
   const center = {
-    name: "AllTheClasses Test Center",
-    address: "P-40A, Shashi Park Rd, near Ahlcon Public School, Supreme Enclave, Mayur Vihar, New Delhi, Delhi 110091",
-    metro: "Nearest Metro: Laxmi Nagar (Blue Line) - 5 min walk",
-    landmarks: "Near City Square Mall & Akshardham Temple"
+    name: "All The Classes",
+    address:
+      "B-36, Shashi Garden, Mayur Vihar Phase-1, Delhi, 110091 (Opposite CRPF Camp Gate No. 2)",
+    metro: "Nearest Metro: New Ashok Nagar (Blue Line) - 7 min walk",
+    landmarks: "Near CRPF Camp, Behind Pizza Hut, Close to Axis Bank ATM",
   };
 
-  // Standard Google Maps embed URL without API key
-  const mapUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.2345678901234!2d77.2876!3d28.6254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce3a7d8e117a5%3A0x1a3b1a3b1a3b1a3b!2sAllTheClasses!5e0!3m2!1sen!2sin!4v1624792345678&z=17";
+  const mapUrl =
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.726625742413!2d77.28982877592306!3d28.607976875678194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce517765fb9eb%3A0x184e9263aeb4df3f!2sAll%20The%20Classes!5e0!3m2!1sen!2sin!4v1751115308145!5m2!1sen!2sin";
 
   return (
     <section className="py-16 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Test Locations</h2>
-          <p className="text-xl text-gray-600">Currently, the test is only available at our Delhi centers.</p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            Test Locations
+          </h2>
+          <p className="text-xl text-gray-600">
+            Currently, the test is only available at our Delhi centers.
+          </p>
           <div className="mt-4">
-            <Badge variant="secondary" className="bg-accent text-accent-foreground">
+            <Badge
+              variant="secondary"
+              className="bg-accent text-accent-foreground"
+            >
               ⭐ New centers opening soon!
             </Badge>
           </div>
@@ -40,7 +48,9 @@ export default function TestLocation() {
                 <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mr-4">
                   <MapPin className="text-primary-foreground w-6 h-6" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900">{center.name}</h3>
+                <h3 className="text-2xl font-bold text-gray-900">
+                  {center.name}
+                </h3>
               </div>
               <div className="space-y-4">
                 <p className="text-lg text-gray-700">{center.address}</p>
@@ -52,13 +62,14 @@ export default function TestLocation() {
               </div>
               <div className="mt-6 p-4 bg-orange-50 rounded-lg border border-orange-100">
                 <p className="text-sm text-gray-700">
-                  <strong>Note:</strong> Exact test center location and detailed directions will be shared via email and SMS after registration completion.
+                  <strong>Note:</strong> Exact test center location and
+                  directions will be sent via email and SMS after registration.
                 </p>
               </div>
             </CardContent>
           </Card>
 
-          {/* Map - Standard embed with marker */}
+          {/* Google Map Embed */}
           <Card className="card-hover border-gray-200">
             <CardContent className="p-0">
               <div className="h-80 bg-gray-100 rounded-lg overflow-hidden">
@@ -70,7 +81,7 @@ export default function TestLocation() {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="AllTheClasses Test Center - Mayur Vihar"
+                  title="All The Classes - Test Center Map"
                 ></iframe>
               </div>
             </CardContent>
@@ -78,7 +89,7 @@ export default function TestLocation() {
         </div>
 
         <div className="mt-8 text-center">
-          <Button 
+          <Button
             onClick={scrollToRegister}
             className="bg-primary text-primary-foreground hover:bg-primary/90"
           >
