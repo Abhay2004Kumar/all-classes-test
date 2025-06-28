@@ -20,7 +20,7 @@ export default function Navigation() {
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
               <img 
-                src="../public/images/image.png" // Replace with your actual image path
+                src="/images/image.png" // Replace with your actual image path
                 alt="ALI THE CLASSES Logo"
                 className="h-16 w-auto" // Adjust height as needed
               />
