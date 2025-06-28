@@ -69,7 +69,7 @@ export default function PrizesRewards() {
             🚀 Limited Time Opportunity
           </Badge>
           <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
-            Win <span className="bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">Life-Changing</span> Rewards!
+            Win <span className="bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">Exciting</span> Rewards!
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-6">
             Test your skills against India's brightest minds and claim your share of amazing prizes!

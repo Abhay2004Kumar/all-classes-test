@@ -8,8 +8,13 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: 'smooth' });
+    // For mobile, scroll to register-mobile, for desktop scroll to register
+    const isMobile = window.innerWidth < 1024; // lg breakpoint
+    const targetId = sectionId === 'register' && isMobile ? 'register-mobile' : sectionId;
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
     setIsMenuOpen(false);
   };
 
