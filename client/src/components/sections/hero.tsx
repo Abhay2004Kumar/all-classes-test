@@ -33,7 +33,7 @@ export default function Hero() {
               </h1>
               
               <p className="text-xl lg:text-2xl text-gray-700 mb-8 leading-relaxed">
-                <span className="font-bold">AllTheClasses Talent Hunt 2025</span> में अपनी प्रतिभा दिखाएं और जीतें <span className="text-amber-600 font-bold">₹10,000+</span> के आकर्षक पुरस्कार!
+                <span className="font-bold">AllTheClasses Talent Hunt 2025</span> में अपनी प्रतिभा दिखाएं और जीतें <span className="text-amber-600 font-bold">₹1 Lakh+</span> के आकर्षक पुरस्कार!
               </p>
 
               {/* Key Highlights */}
