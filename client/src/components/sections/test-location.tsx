@@ -10,11 +10,14 @@ export default function TestLocation() {
   };
 
   const center = {
-    name: "AllTheClasses Main Center",
-    address: "P-40A, Shashi Park Rd, near Ahlcon Public School, Supreme Enclave, Mayur Vihar, New Delhi, Delhi, 110091",
-    metro: "Near Laxmi Nagar Metro Station",
+    name: "AllTheClasses Test Center",
+    address: "P-40A, Shashi Park Rd, near Ahlcon Public School, Supreme Enclave, Mayur Vihar, New Delhi, Delhi 110091",
+    metro: "Nearest Metro: Laxmi Nagar (Blue Line) - 5 min walk",
     landmarks: "Near City Square Mall & Akshardham Temple"
   };
+
+  // Standard Google Maps embed URL without API key
+  const mapUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.2345678901234!2d77.2876!3d28.6254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce3a7d8e117a5%3A0x1a3b1a3b1a3b1a3b!2sAllTheClasses!5e0!3m2!1sen!2sin!4v1624792345678&z=17";
 
   return (
     <section className="py-16 bg-slate-50">
@@ -55,19 +58,19 @@ export default function TestLocation() {
             </CardContent>
           </Card>
 
-          {/* Map */}
+          {/* Map - Standard embed with marker */}
           <Card className="card-hover border-gray-200">
             <CardContent className="p-0">
               <div className="h-80 bg-gray-100 rounded-lg overflow-hidden">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.3725089345847!2d77.27760761508236!3d28.634308982399975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfb9b5c5b0c7f%3A0x1e2f8c9a0b1c2d3e!2sLaxmi%20Nagar%2C%20Delhi!5e0!3m2!1sen!2sin!4v1234567890123"
+                  src={mapUrl}
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="AllTheClasses Test Center Location"
+                  title="AllTheClasses Test Center - Mayur Vihar"
                 ></iframe>
               </div>
             </CardContent>

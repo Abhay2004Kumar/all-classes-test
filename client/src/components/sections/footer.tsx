@@ -1,12 +1,6 @@
 import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from "lucide-react";
 
 export default function Footer() {
-  const socialLinks = [
-    { icon: Facebook, href: "https://facebook.com/alltheclasses", label: "Facebook" },
-    { icon: Twitter, href: "https://twitter.com/alltheclasses", label: "Twitter" },
-    { icon: Instagram, href: "https://instagram.com/alltheclasses", label: "Instagram" },
-    { icon: Youtube, href: "https://youtube.com/alltheclasses", label: "YouTube" }
-  ];
 
   const quickLinks = [
     { text: "About Test", href: "#about" },
@@ -15,9 +9,33 @@ export default function Footer() {
     { text: "Register", href: "#register" }
   ];
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId.replace('#', ''));
-    element?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToSection = (e: React.MouseEvent, sectionId: string) => {
+    e.preventDefault();
+    const id = sectionId.replace('#', '');
+    let element = null;
+    
+    // For register link, check both mobile and desktop sections based on viewport
+    if (id === 'register') {
+      element = window.innerWidth < 1024 
+        ? document.getElementById('register-mobile') 
+        : document.getElementById('register');
+    } else {
+      element = document.getElementById(id);
+    }
+    
+    if (element) {
+      const headerOffset = 80; // Adjust this value based on your header height
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+      
+      // Update URL hash without jumping
+      window.history.pushState(null, '', `#${id}`);
+    }
   };
 
   return (
@@ -31,20 +49,7 @@ export default function Footer() {
             <p className="text-gray-300 mb-6 max-w-md">
               Specializing in JEE, NEET, and CBSE (11th & 12th) coaching with personalized home tuition and small batches of only 8 students per batch. Join our talent test to secure your seat in our exclusive program.
             </p>
-            <div className="flex space-x-4">
-              {socialLinks.map((social, index) => (
-                <a 
-                  key={index}
-                  href={social.href}
-                  className="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-primary/80 transition-colors"
-                  aria-label={social.label}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <social.icon className="w-5 h-5" />
-                </a>
-              ))}
-            </div>
+            
           </div>
 
           <div>
@@ -52,12 +57,13 @@ export default function Footer() {
             <ul className="space-y-2">
               {quickLinks.map((link, index) => (
                 <li key={index}>
-                  <button 
-                    onClick={() => scrollToSection(link.href)}
-                    className="text-gray-300 hover:text-primary transition-colors text-left"
+                  <a 
+                    href={link.href}
+                    onClick={(e) => scrollToSection(e, link.href)}
+                    className="text-gray-300 hover:text-primary transition-colors block py-1"
                   >
                     {link.text}
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>

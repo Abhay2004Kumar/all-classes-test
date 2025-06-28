@@ -77,7 +77,7 @@ const QuizAd = () => {
                 variant="default" 
                 size="lg"
                 onClick={() => navigate('/quiz/select')}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 px-6 text-base flex-1 max-w-xs transition-all duration-200 hover:shadow-md"
+                className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-medium py-2.5 px-6 text-base flex-1 max-w-xs transition-all duration-200 hover:shadow-md shadow-amber-200"
               >
                 Try Demo Quiz
               </Button>

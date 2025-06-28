@@ -6,37 +6,58 @@ export interface QuizQuestion {
   difficulty: 'easy' | 'medium' | 'hard';
   explanation: string;
   timeLimit: number;
-  subject?: string;
-  topic?: string;
-}
-
-export interface QuizTopic {
-  id: string;
-  name: string;
-  description: string;
-  subtopics: string[];
-  questions: QuizQuestion[];
   roundType: 'observe-reflect' | 'scientific-puzzle';
-}
-
-export interface QuizSubject {
-  id: string;
-  name: string;
-  description?: string;
-  topics: QuizTopic[];
+  subject: string;
+  image?: string; // Optional image URL for question illustration
 }
 
 export interface QuizExam {
   id: string;
   name: string;
   description: string;
-  subjects: QuizSubject[];
+  questions: QuizQuestion[];
+  timeLimit: number; // Total time limit in seconds
+  subjectInfo: {
+    name: string;
+    description: string;
+  };
 }
 
+// Helper function to create questions with consistent structure
+const createQuestions = (baseId: string, subject: string, questions: Array<{
+  question: string;
+  options: string[];
+  correctAnswer: number;
+  difficulty: 'easy' | 'medium' | 'hard';
+  explanation: string;
+  timeLimit?: number;
+}>): QuizQuestion[] => {
+  return questions.map((q, i) => ({
+    id: `${baseId}-${i + 1}`,
+    question: q.question,
+    options: q.options,
+    correctAnswer: q.correctAnswer,
+    difficulty: q.difficulty,
+    explanation: q.explanation,
+    timeLimit: q.timeLimit || 30,
+    roundType: Math.random() > 0.5 ? 'observe-reflect' : 'scientific-puzzle',
+    subject: subject
+  }));
+};
+
+// Function to shuffle array
+const shuffleArray = <T>(array: T[]): T[] => {
+  const newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
+};
+
 // Common questions that can be reused
-const commonPhysicsQuestions: QuizQuestion[] = [
+const commonPhysicsQuestions = createQuestions('phy', 'Physics Fundamentals', [
   {
-    id: 'phy-1',
     question: 'Which of the following is a vector quantity?',
     options: [
       'Temperature',
@@ -47,12 +68,9 @@ const commonPhysicsQuestions: QuizQuestion[] = [
     correctAnswer: 2,
     difficulty: 'easy',
     timeLimit: 30,
-    explanation: 'Force has both magnitude and direction, making it a vector quantity.',
-    subject: 'Physics',
-    topic: 'Vectors'
+    explanation: 'Force has both magnitude and direction, making it a vector quantity.'
   },
   {
-    id: 'phy-2',
     question: 'The SI unit of electric current is:',
     options: [
       'Volt',
@@ -63,12 +81,9 @@ const commonPhysicsQuestions: QuizQuestion[] = [
     correctAnswer: 2,
     difficulty: 'easy',
     timeLimit: 25,
-    explanation: 'The SI unit of electric current is Ampere (A).',
-    subject: 'Physics',
-    topic: 'Electricity'
+    explanation: 'The SI unit of electric current is Ampere (A).'
   },
   {
-    id: 'phy-3',
     question: 'A body is moving with constant speed in a circular path. What is the work done by the centripetal force?',
     options: [
       'Positive',
@@ -79,12 +94,9 @@ const commonPhysicsQuestions: QuizQuestion[] = [
     correctAnswer: 2,
     difficulty: 'medium',
     timeLimit: 45,
-    explanation: 'The centripetal force is always perpendicular to the displacement, so work done is zero.',
-    subject: 'Physics',
-    topic: 'Circular Motion'
+    explanation: 'The centripetal force is always perpendicular to the displacement, so work done is zero.'
   },
   {
-    id: 'phy-4',
     question: 'The phenomenon of light bending around obstacles is called:',
     options: [
       'Reflection',
@@ -95,12 +107,9 @@ const commonPhysicsQuestions: QuizQuestion[] = [
     correctAnswer: 2,
     difficulty: 'medium',
     timeLimit: 35,
-    explanation: 'Diffraction is the bending of light around obstacles or through small openings.',
-    subject: 'Physics',
-    topic: 'Wave Optics'
+    explanation: 'Diffraction is the bending of light around obstacles or through small openings.'
   },
   {
-    id: 'phy-5',
     question: 'The energy of a photon is directly proportional to its:',
     options: [
       'Wavelength',
@@ -111,15 +120,12 @@ const commonPhysicsQuestions: QuizQuestion[] = [
     correctAnswer: 1,
     difficulty: 'medium',
     timeLimit: 30,
-    explanation: 'According to Planck\'s equation, E = hν, where ν is the frequency.',
-    subject: 'Physics',
-    topic: 'Quantum Physics'
+    explanation: 'According to Planck\'s equation, E = hν, where ν is the frequency.'
   }
-];
+]);
 
-const commonChemistryQuestions: QuizQuestion[] = [
+const commonChemistryQuestions = createQuestions('chem', 'Chemistry Basics', [
   {
-    id: 'chem-1',
     question: 'The most electronegative element is:',
     options: [
       'Fluorine',
@@ -130,12 +136,9 @@ const commonChemistryQuestions: QuizQuestion[] = [
     correctAnswer: 0,
     difficulty: 'easy',
     timeLimit: 25,
-    explanation: 'Fluorine is the most electronegative element with a value of 3.98 on the Pauling scale.',
-    subject: 'Chemistry',
-    topic: 'Periodic Table'
+    explanation: 'Fluorine is the most electronegative element with a value of 3.98 on the Pauling scale.'
   },
   {
-    id: 'chem-2',
     question: 'Which of the following is a noble gas?',
     options: [
       'Chlorine',
@@ -146,12 +149,9 @@ const commonChemistryQuestions: QuizQuestion[] = [
     correctAnswer: 2,
     difficulty: 'easy',
     timeLimit: 20,
-    explanation: 'Krypton (Kr) is a noble gas in Group 18 of the periodic table.',
-    subject: 'Chemistry',
-    topic: 'Periodic Table'
+    explanation: 'Krypton (Kr) is a noble gas in Group 18 of the periodic table.'
   },
   {
-    id: 'chem-3',
     question: 'The pH of a neutral solution at 25°C is:',
     options: [
       '0',
@@ -162,12 +162,9 @@ const commonChemistryQuestions: QuizQuestion[] = [
     correctAnswer: 1,
     difficulty: 'easy',
     timeLimit: 20,
-    explanation: 'A pH of 7 is neutral at 25°C, indicating equal concentrations of H⁺ and OH⁻ ions.',
-    subject: 'Chemistry',
-    topic: 'Acids and Bases'
+    explanation: 'A pH of 7 is neutral at 25°C, indicating equal concentrations of H⁺ and OH⁻ ions.'
   },
   {
-    id: 'chem-4',
     question: 'Which of the following is NOT a state of matter?',
     options: [
       'Solid',
@@ -178,12 +175,9 @@ const commonChemistryQuestions: QuizQuestion[] = [
     correctAnswer: 3,
     difficulty: 'easy',
     timeLimit: 25,
-    explanation: 'The four fundamental states of matter are solid, liquid, gas, and plasma. Energy is not a state of matter.',
-    subject: 'Chemistry',
-    topic: 'States of Matter'
+    explanation: 'The four fundamental states of matter are solid, liquid, gas, and plasma. Energy is not a state of matter.'
   },
   {
-    id: 'chem-5',
     question: 'The chemical formula of water is:',
     options: [
       'CO₂',
@@ -194,15 +188,12 @@ const commonChemistryQuestions: QuizQuestion[] = [
     correctAnswer: 1,
     difficulty: 'easy',
     timeLimit: 20,
-    explanation: 'Water is composed of two hydrogen atoms and one oxygen atom, hence H₂O.',
-    subject: 'Chemistry',
-    topic: 'Chemical Formulas'
+    explanation: 'Water is composed of two hydrogen atoms and one oxygen atom, hence H₂O.'
   }
-];
+]);
 
-const commonMathsQuestions: QuizQuestion[] = [
+const commonMathsQuestions = createQuestions('math', 'Mathematics', [
   {
-    id: 'math-1',
     question: 'What is the value of π (pi) to two decimal places?',
     options: [
       '3.12',
@@ -213,12 +204,9 @@ const commonMathsQuestions: QuizQuestion[] = [
     correctAnswer: 1,
     difficulty: 'easy',
     timeLimit: 20,
-    explanation: 'The value of π to two decimal places is 3.14.',
-    subject: 'Mathematics',
-    topic: 'Constants'
+    explanation: 'The value of π to two decimal places is 3.14.'
   },
   {
-    id: 'math-2',
     question: 'What is the square root of 144?',
     options: [
       '10',
@@ -229,12 +217,9 @@ const commonMathsQuestions: QuizQuestion[] = [
     correctAnswer: 2,
     difficulty: 'easy',
     timeLimit: 20,
-    explanation: '12 × 12 = 144, so the square root of 144 is 12.',
-    subject: 'Mathematics',
-    topic: 'Square Roots'
+    explanation: '12 × 12 = 144, so the square root of 144 is 12.'
   },
   {
-    id: 'math-3',
     question: 'Solve for x: 2x + 5 = 15',
     options: [
       '5',
@@ -245,12 +230,9 @@ const commonMathsQuestions: QuizQuestion[] = [
     correctAnswer: 0,
     difficulty: 'easy',
     timeLimit: 25,
-    explanation: '2x + 5 = 15 → 2x = 15 - 5 → 2x = 10 → x = 5',
-    subject: 'Mathematics',
-    topic: 'Linear Equations'
+    explanation: '2x + 5 = 15 → 2x = 15 - 5 → 2x = 10 → x = 5'
   },
   {
-    id: 'math-4',
     question: 'What is the area of a rectangle with length 8 and width 5?',
     options: [
       '13',
@@ -261,12 +243,9 @@ const commonMathsQuestions: QuizQuestion[] = [
     correctAnswer: 3,
     difficulty: 'easy',
     timeLimit: 20,
-    explanation: 'Area of rectangle = length × width = 8 × 5 = 40',
-    subject: 'Mathematics',
-    topic: 'Geometry'
+    explanation: 'Area of rectangle = length × width = 8 × 5 = 40'
   },
   {
-    id: 'math-5',
     question: 'What is 25% of 200?',
     options: [
       '25',
@@ -277,15 +256,12 @@ const commonMathsQuestions: QuizQuestion[] = [
     correctAnswer: 1,
     difficulty: 'easy',
     timeLimit: 20,
-    explanation: '25% of 200 = (25/100) × 200 = 50',
-    subject: 'Mathematics',
-    topic: 'Percentages'
+    explanation: '25% of 200 = (25/100) × 200 = 50'
   }
-];
+]);
 
-const commonBiologyQuestions: QuizQuestion[] = [
+const commonBiologyQuestions = createQuestions('bio', 'Biology Fundamentals', [
   {
-    id: 'bio-1',
     question: 'Which organelle is known as the powerhouse of the cell?',
     options: [
       'Nucleus',
@@ -296,12 +272,9 @@ const commonBiologyQuestions: QuizQuestion[] = [
     correctAnswer: 1,
     difficulty: 'easy',
     timeLimit: 25,
-    explanation: 'Mitochondria are known as the powerhouse of the cell because they generate most of the cell\'s supply of ATP.',
-    subject: 'Biology',
-    topic: 'Cell Biology'
+    explanation: 'Mitochondria are known as the powerhouse of the cell because they generate most of the cell\'s supply of ATP.'
   },
   {
-    id: 'bio-2',
     question: 'Photosynthesis occurs in which organelle?',
     options: [
       'Mitochondria',
@@ -312,12 +285,9 @@ const commonBiologyQuestions: QuizQuestion[] = [
     correctAnswer: 1,
     difficulty: 'easy',
     timeLimit: 25,
-    explanation: 'Photosynthesis occurs in the chloroplasts of plant cells, which contain the green pigment chlorophyll.',
-    subject: 'Biology',
-    topic: 'Plant Biology'
+    explanation: 'Photosynthesis occurs in the chloroplasts of plant cells, which contain the green pigment chlorophyll.'
   },
   {
-    id: 'bio-3',
     question: 'Which of the following is NOT a type of blood cell?',
     options: [
       'Erythrocyte',
@@ -328,12 +298,9 @@ const commonBiologyQuestions: QuizQuestion[] = [
     correctAnswer: 3,
     difficulty: 'medium',
     timeLimit: 30,
-    explanation: 'Osteocytes are bone cells, not blood cells. The three main types of blood cells are erythrocytes (red blood cells), leukocytes (white blood cells), and thrombocytes (platelets).',
-    subject: 'Biology',
-    topic: 'Human Physiology'
+    explanation: 'Osteocytes are bone cells, not blood cells. The three main types of blood cells are erythrocytes (red blood cells), leukocytes (white blood cells), and thrombocytes (platelets).'
   },
   {
-    id: 'bio-4',
     question: 'Which of these is the basic unit of heredity?',
     options: [
       'Cell',
@@ -344,12 +311,9 @@ const commonBiologyQuestions: QuizQuestion[] = [
     correctAnswer: 1,
     difficulty: 'easy',
     timeLimit: 25,
-    explanation: 'A gene is the basic physical and functional unit of heredity, made up of DNA.',
-    subject: 'Biology',
-    topic: 'Genetics'
+    explanation: 'A gene is the basic physical and functional unit of heredity, made up of DNA.'
   },
   {
-    id: 'bio-5',
     question: 'Which system in the human body is responsible for producing hormones?',
     options: [
       'Nervous system',
@@ -360,16 +324,13 @@ const commonBiologyQuestions: QuizQuestion[] = [
     correctAnswer: 1,
     difficulty: 'easy',
     timeLimit: 25,
-    explanation: 'The endocrine system is responsible for producing and secreting hormones that regulate various bodily functions.',
-    subject: 'Biology',
-    topic: 'Human Physiology'
+    explanation: 'The endocrine system is responsible for producing and secreting hormones that regulate various bodily functions.'
   }
-];
+]);
 
 // Puzzle questions for scientific thinking
-const puzzleQuestions: QuizQuestion[] = [
+const puzzleQuestions = createQuestions('puzzle', 'Puzzles', [
   {
-    id: 'puzzle-1',
     question: 'If all trees were cut down in your locality, what would happen to the temperature and rainfall patterns?',
     options: [
       'No change',
@@ -383,7 +344,6 @@ const puzzleQuestions: QuizQuestion[] = [
     explanation: 'Trees maintain microclimate through transpiration and shade - their loss leads to higher temperatures and reduced rainfall.'
   },
   {
-    id: 'puzzle-2',
     question: 'A farmer has 17 sheep and all but 9 die. How many are left?',
     options: [
       '8',
@@ -397,7 +357,6 @@ const puzzleQuestions: QuizQuestion[] = [
     explanation: 'The phrase "all but 9 die" means 9 sheep are still alive.'
   },
   {
-    id: 'puzzle-3',
     question: 'Which number should come next in the series: 2, 4, 8, 16, ___',
     options: [
       '18',
@@ -410,234 +369,86 @@ const puzzleQuestions: QuizQuestion[] = [
     timeLimit: 40,
     explanation: 'Each number is multiplied by 2 to get the next number: 2×2=4, 4×2=8, 8×2=16, 16×2=32.'
   }
-];
+]);
+
+// Helper function to create exam data
+const createExam = (
+  id: string,
+  name: string,
+  description: string,
+  timeLimit: number,
+  subjectName: string,
+  subjectDescription: string,
+  subjectQuestions: Array<{subject: string; questions: QuizQuestion[]}>
+): QuizExam => {
+  // Group questions by subject
+  const questionsBySubject = new Map<string, QuizQuestion[]>();
+  
+  subjectQuestions.forEach(({subject, questions}) => {
+    if (!questionsBySubject.has(subject)) {
+      questionsBySubject.set(subject, []);
+    }
+    questionsBySubject.get(subject)?.push(...questions);
+  });
+  
+  // Flatten the questions while maintaining subject grouping
+  const questions: QuizQuestion[] = [];
+  questionsBySubject.forEach((subjectQs, subject) => {
+    questions.push(...subjectQs);
+  });
+
+  return {
+    id,
+    name,
+    description,
+    timeLimit,
+    subjectInfo: {
+      name: subjectName,
+      description: subjectDescription
+    },
+    questions
+  };
+};
 
 export const quizExams: Record<string, QuizExam> = {
-  foundation: {
-    id: 'foundation',
-    name: 'Foundation (Class 9-10)',
-    description: 'Build strong conceptual understanding in core subjects',
-    subjects: [
-      {
-        id: 'science',
-        name: 'Science',
-        description: 'Explore the fundamentals of Physics, Chemistry, and Biology',
-        topics: [
-          {
-            id: 'observe-reflect',
-            name: 'Observe & Reflect',
-            description: 'Conceptual rapid-fire questions to test your understanding',
-            subtopics: ['Physics', 'Chemistry', 'Biology'],
-            roundType: 'observe-reflect',
-            questions: [
-              ...commonPhysicsQuestions.slice(0, 2),
-              ...commonChemistryQuestions.slice(0, 2),
-              ...commonBiologyQuestions.slice(0, 2)
-            ]
-          },
-          {
-            id: 'scientific-puzzle',
-            name: 'Scientific Puzzle',
-            description: 'Critical thinking challenges to develop problem-solving skills',
-            subtopics: ['Problem Solving', 'Analysis'],
-            roundType: 'scientific-puzzle',
-            questions: puzzleQuestions
-          }
-        ]
-      },
-      {
-        id: 'mathematics',
-        name: 'Mathematics',
-        description: 'Master the fundamentals of numbers and problem-solving',
-        topics: [
-          {
-            id: 'math-basics',
-            name: 'Math Basics',
-            description: 'Fundamental mathematical concepts and operations',
-            subtopics: ['Arithmetic', 'Algebra', 'Geometry'],
-            roundType: 'observe-reflect',
-            questions: commonMathsQuestions
-          },
-          {
-            id: 'math-puzzles',
-            name: 'Math Puzzles',
-            description: 'Challenging problems to enhance logical thinking',
-            subtopics: ['Logic', 'Patterns', 'Problem Solving'],
-            roundType: 'scientific-puzzle',
-            questions: puzzleQuestions
-          }
-        ]
-      }
+  foundation: createExam(
+    'foundation',
+    'Foundation (Class 9-10)',
+    'Build strong conceptual understanding in core subjects',
+    1800, // 30 minutes
+    'Science & Mathematics',
+    'Combined questions from Science and Mathematics for Class 9-10 students',
+    [
+      { subject: 'Physics', questions: [...commonPhysicsQuestions] },
+      { subject: 'Chemistry', questions: [...commonChemistryQuestions] },
+      { subject: 'Mathematics', questions: [...commonMathsQuestions] },
+      { subject: 'Biology', questions: [...commonBiologyQuestions] }
     ]
-  },
-  jee: {
-    id: 'jee',
-    name: 'JEE (Joint Entrance Examination)',
-    description: 'Prepare for engineering entrance with advanced concepts',
-    subjects: [
-      {
-        id: 'physics',
-        name: 'Physics',
-        description: 'Master the principles of Physics for engineering entrance',
-        topics: [
-          {
-            id: 'physics-concepts',
-            name: 'Physics Concepts',
-            description: 'Core concepts and theories in Physics',
-            subtopics: ['Mechanics', 'Electrodynamics', 'Modern Physics'],
-            roundType: 'observe-reflect',
-            questions: commonPhysicsQuestions
-          },
-          {
-            id: 'physics-problems',
-            name: 'Physics Problems',
-            description: 'Challenging numerical problems and derivations',
-            subtopics: ['Problem Solving', 'Numericals'],
-            roundType: 'scientific-puzzle',
-            questions: [
-              ...commonPhysicsQuestions.slice(2),
-              ...puzzleQuestions.slice(0, 2)
-            ]
-          }
-        ]
-      },
-      {
-        id: 'chemistry',
-        name: 'Chemistry',
-        description: 'In-depth study of Physical, Organic and Inorganic Chemistry',
-        topics: [
-          {
-            id: 'chemistry-concepts',
-            name: 'Chemistry Concepts',
-            description: 'Fundamental concepts in Chemistry',
-            subtopics: ['Physical', 'Organic', 'Inorganic'],
-            roundType: 'observe-reflect',
-            questions: commonChemistryQuestions
-          },
-          {
-            id: 'chemistry-problems',
-            name: 'Chemistry Problems',
-            description: 'Challenging problems and mechanisms',
-            subtopics: ['Reactions', 'Mechanisms', 'Numericals'],
-            roundType: 'scientific-puzzle',
-            questions: [
-              ...commonChemistryQuestions.slice(2),
-              ...puzzleQuestions.slice(1, 3)
-            ]
-          }
-        ]
-      },
-      {
-        id: 'mathematics-jee',
-        name: 'Mathematics',
-        description: 'Advanced Mathematics for engineering entrance',
-        topics: [
-          {
-            id: 'math-concepts',
-            name: 'Math Concepts',
-            description: 'Advanced mathematical concepts',
-            subtopics: ['Calculus', 'Algebra', 'Coordinate Geometry'],
-            roundType: 'observe-reflect',
-            questions: commonMathsQuestions
-          },
-          {
-            id: 'math-problems',
-            name: 'Math Problems',
-            description: 'Challenging mathematical problems',
-            subtopics: ['Problem Solving', 'Derivations'],
-            roundType: 'scientific-puzzle',
-            questions: [
-              ...commonMathsQuestions.slice(2),
-              ...puzzleQuestions
-            ]
-          }
-        ]
-      }
+  ),
+  jee: createExam(
+    'jee',
+    'JEE (Joint Entrance Examination)',
+    'Prepare for engineering entrance with comprehensive study material',
+    3600, // 60 minutes
+    'PCM (Physics, Chemistry, Mathematics)',
+    'Combined questions from Physics, Chemistry, and Mathematics for JEE preparation',
+    [
+      { subject: 'Physics', questions: [...commonPhysicsQuestions] },
+      { subject: 'Chemistry', questions: [...commonChemistryQuestions] },
+      { subject: 'Mathematics', questions: [...commonMathsQuestions] }
     ]
-  },
-  neet: {
-    id: 'neet',
-    name: 'NEET (National Eligibility cum Entrance Test)',
-    description: 'Prepare for medical entrance with comprehensive study material',
-    subjects: [
-      {
-        id: 'biology-neet',
-        name: 'Biology',
-        description: 'In-depth study of Botany and Zoology',
-        topics: [
-          {
-            id: 'botany',
-            name: 'Botany',
-            description: 'Study of plant life',
-            subtopics: ['Plant Physiology', 'Genetics', 'Ecology'],
-            roundType: 'observe-reflect',
-            questions: commonBiologyQuestions
-          },
-          {
-            id: 'zoology',
-            name: 'Zoology',
-            description: 'Study of animal life',
-            subtopics: ['Human Physiology', 'Genetics', 'Evolution'],
-            roundType: 'scientific-puzzle',
-            questions: [
-              ...commonBiologyQuestions.slice(2),
-              ...puzzleQuestions
-            ]
-          }
-        ]
-      },
-      {
-        id: 'physics-neet',
-        name: 'Physics',
-        description: 'Physics concepts for medical entrance',
-        topics: [
-          {
-            id: 'physics-concepts-neet',
-            name: 'Physics Concepts',
-            description: 'Core physics concepts for medical entrance',
-            subtopics: ['Mechanics', 'Thermodynamics', 'Optics'],
-            roundType: 'observe-reflect',
-            questions: commonPhysicsQuestions
-          },
-          {
-            id: 'physics-applications',
-            name: 'Physics Applications',
-            description: 'Application of physics in medical field',
-            subtopics: ['Medical Instruments', 'Diagnostics', 'Therapy'],
-            roundType: 'scientific-puzzle',
-            questions: [
-              ...commonPhysicsQuestions.slice(2),
-              ...puzzleQuestions
-            ]
-          }
-        ]
-      },
-      {
-        id: 'chemistry-neet',
-        name: 'Chemistry',
-        description: 'Chemistry for medical sciences',
-        topics: [
-          {
-            id: 'chemistry-concepts-neet',
-            name: 'Chemistry Concepts',
-            description: 'Core chemistry concepts for medical entrance',
-            subtopics: ['Organic', 'Inorganic', 'Physical'],
-            roundType: 'observe-reflect',
-            questions: commonChemistryQuestions
-          },
-          {
-            id: 'biochemistry',
-            name: 'Biochemistry',
-            description: 'Chemistry of living organisms',
-            subtopics: ['Biomolecules', 'Metabolism', 'Enzymes'],
-            roundType: 'scientific-puzzle',
-            questions: [
-              ...commonChemistryQuestions.slice(2),
-              ...puzzleQuestions
-            ]
-          }
-        ]
-      }
+  ),
+  neet: createExam(
+    'neet',
+    'NEET (National Eligibility cum Entrance Test)',
+    'Prepare for medical entrance with comprehensive study material',
+    3600, // 60 minutes
+    'PCB (Physics, Chemistry, Biology)',
+    'Combined questions from Physics, Chemistry, and Biology for NEET preparation',
+    [
+      { subject: 'Physics', questions: [...commonPhysicsQuestions] },
+      { subject: 'Chemistry', questions: [...commonChemistryQuestions] },
+      { subject: 'Biology', questions: [...commonBiologyQuestions] }
     ]
-  }
+  )
 };

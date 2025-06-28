@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Building, Book, Clock, Calendar, Timer, Info } from "lucide-react";
+import { Building, Book, Clock, Calendar, Timer, Info, GraduationCap } from "lucide-react";
 
 export default function AboutTest() {
   return (
@@ -23,15 +23,17 @@ export default function AboutTest() {
             </CardContent>
           </Card>
 
-          <Card className="card-hover bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-100">
-            <CardContent className="p-6">
-              <div className="w-12 h-12 bg-brand-blue rounded-lg flex items-center justify-center mb-4">
-                <Book className="text-white w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Subjects Covered</h3>
-              <p className="text-gray-600">Class-specific questions in Science, Mathematics, and Logical Reasoning curated for students from 9th to 12th grade.</p>
-            </CardContent>
-          </Card>
+                <Card className="card-hover bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-100">
+        <CardContent className="p-6">
+          <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center mb-4">
+            <GraduationCap className="text-white w-6 h-6" />
+          </div>
+          <h3 className="text-xl font-semibold text-gray-900 mb-2">Subjects Covered</h3>
+          <p className="text-gray-600">
+            Class-specific questions in Science, Mathematics, and Logical Reasoning curated for students from 9th to 12th grade.
+          </p>
+        </CardContent>
+      </Card>
 
           <Card className="card-hover bg-gradient-to-br from-green-50 to-emerald-50 border-green-100">
             <CardContent className="p-6">

@@ -4,31 +4,31 @@ import AboutTest from "@/components/sections/about-test";
 import TestLocation from "@/components/sections/test-location";
 import WhoShouldApply from "@/components/sections/who-should-apply";
 import PrizesRewards from "@/components/sections/prizes-rewards";
-import PersonalizedLearning from "@/components/sections/personalized-learning";
-import WhyAllTheClasses from "@/components/sections/why-alltheclasses";
 import FAQ from "@/components/sections/faq";
-import Faculty from "@/components/sections/faculty";
 import Footer from "@/components/sections/footer";
 import { Button } from "@/components/ui/button";
 import { PenTool } from "lucide-react";
 
 export default function Home() {
   const scrollToRegister = () => {
-    const element = document.getElementById('register');
-    element?.scrollIntoView({ behavior: 'smooth' });
+    // For mobile, scroll to register-mobile, for desktop scroll to register
+    const isMobile = window.innerWidth < 1024; // lg breakpoint
+    const elementId = isMobile ? 'register-mobile' : 'register';
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
     <div className="font-sans bg-slate-50">
       <Navigation />
+      <PrizesRewards />
       <Hero />
       <AboutTest />
       <TestLocation />
       <WhoShouldApply />
-      <PrizesRewards />
-      <PersonalizedLearning />
-      <WhyAllTheClasses />
-      <Faculty />
+    
       <FAQ />
       <Footer />
       

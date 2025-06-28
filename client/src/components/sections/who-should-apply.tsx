@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { GraduationCap, Target, TrendingUp } from "lucide-react";
+import { GraduationCap, Target, TrendingUp,NotebookPen } from "lucide-react";
 
 export default function WhoShouldApply() {
   const criteria = [
@@ -13,12 +13,12 @@ export default function WhoShouldApply() {
       delay: "0s"
     },
     {
-      icon: Target,
+      icon: NotebookPen,
       title: "Preparing for JEE, NEET, or Board exams",
       description: "Students who are serious about competitive exams and want to benchmark their preparation level.",
       bgColor: "from-blue-50 to-white",
-      borderColor: "border-blue-100", 
-      iconBg: "bg-brand-blue",
+      borderColor: "border-blue-100",
+      iconBg: "bg-amber-500",  // more vibrant
       delay: "0.2s"
     },
     {

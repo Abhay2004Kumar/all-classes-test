@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
 import NotFound from "@/pages/not-found";
-import QuizPage from "@/pages/quiz/[class]";
+import QuizPage from "@/pages/quiz/[exam]";
 import QuizSelectPage from "@/pages/quiz/select";
 import QuizAd from "@/components/sections/quizAd";
 
@@ -14,7 +14,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/quiz/select" component={QuizSelectPage} />
-      <Route path="/quiz/:exam/:subject/:topic" component={QuizPage} />
+      <Route path="/quiz/:exam" component={QuizPage} />
       <Route component={NotFound} />
     </Switch>
   );
