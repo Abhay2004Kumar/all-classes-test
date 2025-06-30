@@ -23,17 +23,17 @@ export default function AboutTest() {
             </CardContent>
           </Card>
 
-                <Card className="card-hover bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-100">
-        <CardContent className="p-6">
-          <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center mb-4">
-            <GraduationCap className="text-white w-6 h-6" />
-          </div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-2">Subjects Covered</h3>
-          <p className="text-gray-600">
-            Class-specific questions in Science, Mathematics, and Logical Reasoning curated for students from 9th to 12th grade.
-          </p>
-        </CardContent>
-      </Card>
+          <Card className="card-hover bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-100">
+            <CardContent className="p-6">
+              <div className="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center mb-4">
+                <GraduationCap className="text-white w-6 h-6" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Subjects Covered</h3>
+              <p className="text-gray-600">
+                Class-specific questions in Science, Mathematics, and Logical Reasoning curated for students from 9th to 12th grade.
+              </p>
+            </CardContent>
+          </Card>
 
           <Card className="card-hover bg-gradient-to-br from-green-50 to-emerald-50 border-green-100">
             <CardContent className="p-6">
@@ -53,18 +53,18 @@ export default function AboutTest() {
               <div className="space-y-2">
                 <div className="flex items-center">
                   <Calendar className="mr-3 w-5 h-5" />
-                  <span className="font-medium">Date: [To be announced soon]</span>
+                  <span className="font-medium">Days: Every Thursday and Sunday</span>
                 </div>
                 <div className="flex items-center">
                   <Timer className="mr-3 w-5 h-5" />
-                  <span className="font-medium">Time: [Will be shared post registration]</span>
+                  <span className="font-medium">Timings: 10:00 AM - 11:00 AM and 5:00 PM - 6:00 PM</span>
                 </div>
               </div>
             </div>
             <div className="text-center md:text-right">
               <div className="inline-flex items-center bg-white bg-opacity-20 rounded-full px-4 py-2">
                 <Info className="mr-2 w-4 h-4" />
-                <span className="font-medium">Details shared after registration</span>
+                <span className="font-medium">Register to book your preferred slot</span>
               </div>
             </div>
           </div>
