@@ -64,7 +64,7 @@ export default function AboutTest() {
             <div className="text-center md:text-right">
               <div className="inline-flex items-center bg-white bg-opacity-20 rounded-full px-4 py-2">
                 <Info className="mr-2 w-4 h-4" />
-                <span className="font-medium">Register to book your preferred slot</span>
+                <span className="font-medium">Details Shared after Registration</span>
               </div>
             </div>
           </div>
